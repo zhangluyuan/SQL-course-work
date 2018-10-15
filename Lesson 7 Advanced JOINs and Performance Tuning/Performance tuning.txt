@@ -1,0 +1,23 @@
+One way to make a query run faster is to reduce the number of calculations that
+need to be performed. Some of the high-level things that will affect the number
+of calculations a given query will make include:
+
+a. Table size
+b. Joins
+c. Aggregations
+
+Query runtime is also dependent on some things that you can’t really control
+related to the database itself:
+a. Other users running queries concurrently on the database
+b. Database software and optimization (e.g., Postgres is optimized differently than Redshift)
+
+
+1. if you have time series data, limit to a small time window
+2. test you query on a subset of data, finalizing the query,
+   then remove the subset limitation
+3. limit the amount of data that you are working with in the place where it
+    will be executed first
+4. reduce table size before joining
+5. worry about accuracy before worrying about speed
+6. use EXPLAIN to get a sense how long the query will run
+7. pre-aggregate subqueries before JOIN    
